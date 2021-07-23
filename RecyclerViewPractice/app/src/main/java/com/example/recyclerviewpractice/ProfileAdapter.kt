@@ -20,6 +20,8 @@ class ProfileAdapter(val profileList: ArrayList<Profiles>): RecyclerView.Adapter
         //LayoutInflater : 붙일 수 있다.
         //context : Activity에 있는 모든 정보들을 말한다. - Adapter에 연결될 Activity의 모든 정보들을 가지고 있다.
 
+
+        //button click toast message add
         return CostomViewHolder(view).apply {
 
             itemView.setOnClickListener {
