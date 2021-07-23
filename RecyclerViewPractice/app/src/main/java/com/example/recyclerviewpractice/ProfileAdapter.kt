@@ -6,6 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
+import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
 
 //Activity에서 Recyclerview를 연결할 때 bridge 역할을 함 - adapter 필요.
@@ -19,7 +20,16 @@ class ProfileAdapter(val profileList: ArrayList<Profiles>): RecyclerView.Adapter
         //LayoutInflater : 붙일 수 있다.
         //context : Activity에 있는 모든 정보들을 말한다. - Adapter에 연결될 Activity의 모든 정보들을 가지고 있다.
 
-        return CostomViewHolder(view)
+        return CostomViewHolder(view).apply {
+
+            itemView.setOnClickListener {
+                val curPos: Int = adapterPosition
+                val profils: Profiles = profileList.get(curPos)
+                Toast.makeText(parent.context, "이름 : ${profils.mainName}\n 부제목 : ${profils.subName}\n 번호 : ${profils.idNum}\n",Toast.LENGTH_LONG).show()
+                Log.d(TAG, "ProfileAdapter - onCreateViewHolder() called / 이름 : ${profils.mainName}, 부제목 : ${profils.subName}, 번호 : ${profils.idNum}")
+            }
+
+        }
     }
 
     override fun onBindViewHolder(holder: ProfileAdapter.CostomViewHolder, position: Int) {
